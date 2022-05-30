@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Home</title>
+ 
+        
+    </h:head>
+
+    <h:body>
+        <ui:include src="Componentes/menu.xhtml"/>
+
+        <h:form id="form">
+            <p:panel header="Registro Contribuyente">
+                <p:messages id="msgs"/>
+                <h:panelGrid columns="3" cellpadding="5">
+
+                    <h:outputText value="No Nit: "/>
+                    <p:inputMask id="no_nit" value="#{conBean.noNit}" mask="9999-999999-9"
+                                 required="true" requiredMessage=" N° Nit es requerido...">
+                    </p:inputMask>
+                    <p:message id="no_nit_error" for="no_nit"/>
+
+                    <h:outputText value="Nombre Contribuyente: "/>
+                    <p:inputText id="nc" value="#{conBean.nombreC}" 
+                                 required="true" requiredMessage="Nombre Contribuyente es requerido...">
+                    </p:inputText>
+                    <p:message id="nombre_contribuyente_error" for="nc"/>
+
+                    <h:outputText value="Razon Social: "/>
+                    <p:inputText id="rs" value="#{conBean.razonS}" 
+                                 required="true" requiredMessage="Razon social es requerido...">
+                    </p:inputText>
+                    <p:message id="razon_social_error" for="rs"/>
+
+                    <h:outputText value="Representante Legal: "/>
+                    <p:inputText id="rep" value="#{conBean.repre}" 
+                                 required="true" requiredMessage="Representante legal es requerido...">
+                    </p:inputText>
+                    <p:message id="representante_legal_error" for="rep"/>
+
+                    <h:outputText value="Renta Anual "/>
+                    <p:inputMask id="renAnual" value="#{conBean.rentaAnual}" mask="999.99"
+                                 readonly="true" requiredMessage=" Renta anual es requerida...">
+                   </p:inputMask>
+                    <p:message id="Renta_Anual_error" for="renAnual"/>
+
+                    <h:outputText value="Fecha Registro:  "/>
+                    <p:calendar id="fechaReg" value="#{conBean.fechaReg}" showOn="button"
+                                required="true" locale="es" navigator="true"
+                                requiredMessage="La fecha de registro es requerida..." pattern="dd/MM/yyyy">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </p:calendar>
+                    <p:message id="Fecha_registro_error" for="fechaReg"/>
+
+                    <h:outputText value="Estado contribuyente:  "/>
+                    <h:selectOneMenu value="#{conBean.estadoCont}">
+                        <f:selectItem itemValue="A" itemLabel="Activo"/>
+                        <f:selectItem itemValue="i" itemLabel="Inactivo"/>
+
+                    </h:selectOneMenu>
+
+                </h:panelGrid>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:commandButton  value="Guardar" action="#{conBean.saveC()}"/>
+                    <h:commandButton  value="Limpiar" action="#{conBean.clear()}"/>
+
+                </h:panelGrid>
+            </p:panel>            
+        </h:form>
+    </h:body>
+</html>
+
